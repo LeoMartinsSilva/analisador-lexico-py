@@ -56,9 +56,18 @@ def analisarPalavra(palavra):
             tokens.append(token.code)
             lexemas.append(token.lexeme)
         elif (len(palavra)>i+1 and (palavra[i+1] in delimitadores or palavra[i+1] in delimitadoresPular)) or len(palavra)==i+1:
-            token = enumToken.getIdent()
-            tokens.append(token[0])
-            lexemas.append(token[1])
+            if lexema.isdigit() and '.' in lexema:
+                token = enumToken.getNInt()
+                tokens.append(token[0])
+                lexemas.append(token[1])
+            elif lexema.isdigit():
+                token = enumToken.getNReal()
+                tokens.append(token[0])
+                lexemas.append(token[1]) 
+            else:
+                token = enumToken.getIdent()
+                tokens.append(token[0])
+                lexemas.append(token[1])
 
     print(palavra)
     print("Token: ", tokens)

@@ -1,2 +1,2 @@
 program meuprograma
-print{'denis'}
+print{'denis', 10.1}
