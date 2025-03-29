@@ -1,6 +1,13 @@
 
 from tokens import Token as enumToken
 
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def analisarArquivo(nomeArquivo):
     with open(nomeArquivo, 'r') as arquivo:
         conteudo = arquivo.read()
@@ -10,7 +17,7 @@ def analisarPalavra(palavra):
     lexema = '';
     tokens = []
     lexemas = []
-    delimitadores = ['{', '}', ';', '(', ')', '\'', '\"', ',', ':', '=', '!', '<', '>', '+', '-', '*', '/',  '.']
+    delimitadores = ['{', '}', ';', '(', ')', '\'', '\"', ',', ':', '=', '!', '<', '>', '+', '-', '*', '/']
     delimitadoresPular = [' ', '\n', '\t']
     delimitadorQuePodeTerIrmao = ['>', '<', ':']
 
@@ -26,6 +33,11 @@ def analisarPalavra(palavra):
             esperaIrmao = False
         elif palavra[i] in delimitadores:
             lexema = palavra[i]
+        elif palavra[i] == '.':
+            if lexema.isdigit() and len(palavra)>i+1 and palavra[i+1].isdigit() and not esperaFechamentoString and not esperaFechamentoLiteral:
+                lexema = lexema + palavra[i]
+            else:
+                lexema = palavra[i]
         elif palavra[i] in delimitadoresPular:
             lexema = ""
             continue
@@ -55,15 +67,20 @@ def analisarPalavra(palavra):
             token = enumToken.getByLexeme(lexema)
             tokens.append(token.code)
             lexemas.append(token.lexeme)
-        elif (len(palavra)>i+1 and (palavra[i+1] in delimitadores or palavra[i+1] in delimitadoresPular)) or len(palavra)==i+1:
-            if lexema.isdigit() and '.' in lexema:
+            lexema = ""
+        elif (len(palavra)>i+1 and (palavra[i+1] in delimitadores or palavra[i+1] in delimitadoresPular or palavra[i+1] =='.')) or len(palavra)==i+1:
+            if(palavra[i+1] == '.' and lexema.isdigit() and len(palavra)>i+2 and palavra[i+2].isdigit()):
+                continue
+            if lexema.isdigit() :
                 token = enumToken.getNInt()
                 tokens.append(token[0])
                 lexemas.append(token[1])
-            elif lexema.isdigit():
+                lexema = "" 
+            elif is_float(lexema):
                 token = enumToken.getNReal()
                 tokens.append(token[0])
-                lexemas.append(token[1]) 
+                lexemas.append(token[1])
+                lexema = ""
             else:
                 token = enumToken.getIdent()
                 tokens.append(token[0])
@@ -72,6 +89,9 @@ def analisarPalavra(palavra):
     print(palavra)
     print("Token: ", tokens)
     print("Lexema: ", lexemas)
+
+    if '10.2'.isdigit() and '.' in '10.2':
+        print("É um número real")
     """for i in range(0,len(tokens)):
         print("Token: ", tokens[i])
         print("Lexema: ", lexemas[i])
