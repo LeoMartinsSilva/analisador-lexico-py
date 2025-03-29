@@ -1,6 +1,9 @@
 import numpy as np
 from tokens import Token as enumToken
-palavra = 'program >= end. \';\' \";\"'
+
+palavra = ''
+with open('main.txt', 'r') as arquivo:
+    palavra = arquivo.read()
 
 print(palavra)
 
@@ -17,32 +20,47 @@ esperaFechamentoString = False
 esperaFechamentoLiteral = False
 
 for i in range(0,len(palavra)):
-    if palavra[i] in delimitadores and esperaIrmao:
+    if (esperaFechamentoLiteral or esperaFechamentoString) and palavra[i] not in ["'", '"']:
+        lexema = lexema + palavra[i]
+    elif palavra[i] in delimitadores and esperaIrmao:
         lexema = lexema + palavra[i]
         esperaIrmao = False
     elif palavra[i] in delimitadores:
         lexema = palavra[i]
-    elif palavra[i] not in delimitadoresPular:
-        lexema = lexema + palavra[i]
-    else:
+    elif palavra[i] in delimitadoresPular:
         lexema = ""
         continue
-
-    print("Lexema: ", lexema)
+    else:
+        lexema = lexema + palavra[i]
     
+    if lexema == '"':
+        if esperaFechamentoString:
+            token = enumToken.getVString()
+            tokens.append(token[0])
+            lexemas.append(token[1])
+        esperaFechamentoString = not esperaFechamentoString
+    elif esperaFechamentoString:
+        continue
+    if(lexema == "'"):
+        if esperaFechamentoLiteral:
+            token = enumToken.getLiteral()
+            tokens.append(token[0])
+            lexemas.append(token[1])
+        esperaFechamentoLiteral = not esperaFechamentoLiteral
+    elif esperaFechamentoLiteral:
+        continue
     if len(palavra)>i+1 and palavra[i] in delimitadorQuePodeTerIrmao and enumToken.getByLexeme(lexema + palavra[i+1]) is not None:
         esperaIrmao = True
-        continue
-    if lexema in ['\'', '\"']:
-        esperaFechamentoString = not esperaFechamentoString
-    elif esperaFechamentoString or esperaFechamentoLiteral:
         continue
     if enumToken.getByLexeme(lexema) is not None:
         token = enumToken.getByLexeme(lexema)
         tokens.append(token.code)
         lexemas.append(token.lexeme)
-    if lexema in delimitadores:
-        lexema = ""
+    elif (len(palavra)>i+1 and (palavra[i+1] in delimitadores or palavra[i+1] in delimitadoresPular)) or len(palavra)==i+1:
+        token = enumToken.getIdent()
+        tokens.append(token[0])
+        lexemas.append(token[1])
+
 
 """for i in range(0,len(tokens)):
     print("Token: ", tokens[i])

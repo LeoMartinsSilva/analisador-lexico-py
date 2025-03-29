@@ -12,19 +12,14 @@ class Token(Enum):
     PROGRAM = (8, "program")
     PROCEDURE = (9, "procedure")
     PRINT = (10, "print")
-    NREAL = (11, "nreal")
-    NINT = (12, "nint")
-    LITERAL = (13, "literal")
     INTEGER = (14, "integer")
     IF = (15, "if")
-    IDENT = (16, "ident")
     FOR = (17, "for")
     END = (18, "end")
     ELSE = (19, "else")
     DO = (20, "do")
     CONST = (21, "const")
     BEGIN = (22, "begin")
-    VSTRING = (23, "vstring")
     GREATER_EQUAL = (24, ">=")
     GREATER = (25, ">")
     EQUAL = (26, "=")
@@ -58,3 +53,23 @@ class Token(Enum):
             if token.lexeme == lexeme:
                 return token
         return None  # Retorna None se não encontrar
+
+    @classmethod
+    def getVString(cls):
+        return (23, "vstring");
+
+    @classmethod
+    def getLiteral(cls):
+        return (13, "literal");
+
+    @classmethod
+    def getIdent(cls):
+        return (16, "ident");
+
+    @classmethod
+    def getNReal(cls):
+        return (11, "nreal");
+    
+    @classmethod
+    def getNInt(cls):
+        return (12, "nint");
