@@ -72,7 +72,7 @@ begin
     if a < b then 
     begin
         print {"A é menor que b"} 
-    end;
+    end; 
     if a <> b then 
     begin
         print {"A é diferente de b"} 
