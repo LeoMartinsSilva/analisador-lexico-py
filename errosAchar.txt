@@ -1,13 +1,15 @@
-Declaração de ident com mais de 64 caracteres, com acentuação ou caracteres 
-especiais, que começam com dígitos ou com espaços; 
+Declaração de ident:
+    com mais de 64 caracteres; (OK)
+    com acentuação ou caracteres especiais; (OK)
+    que começam com dígitos; (OK)
+    com espaços. (OK)
 
-Número inteiro maior do que 9999; 
+Número inteiro maior do que 9999;  (OK)
 
-Número real com mais de 2 casas decimais, (ex: 10.003); 
+Número real com mais de 2 casas decimais, (ex: 10.003); (OK)
 
-Dados do tipo real conter algum caractere diferente dá “.” para separação da parte 
-inteira da decimal; 
+Dados do tipo real conter algum caractere diferente dá “.” para separação da parte inteira da decimal; (OK)
 
-Abrir literal (‘’) e não fechar; 
+Abrir literal (‘’) e não fechar; (OK)
 
-Abrir String (“”) e não fechar; 
+Abrir String (“”) e não fechar; (OK)

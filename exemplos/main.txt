@@ -3,10 +3,10 @@ program meuprograma;
 const tamanhoArray = 10;
 
 var a , b , c : integer;
-d , e , f : string;
-valor : real;
+d , e , 0f : string;
+valor123456789012345678901234567890123456789012345678901234567890 : real;
 
-procedure somar(val1 : integer, val2 : integer);
+procedure somár(va l1 : integer, val2 : integer);
 begin
 	soma := val1+val2;
 end;
@@ -17,14 +17,14 @@ begin
 end;
 
 begin
-    valor := 10.2;
+    valor := 10000.200;
     c := a/b;
     b := c*a;
     a += c-b;
     print{'denis', 10.12};
     print{"escreva sua idade"};
     read(idade);
-    if idade < 12 then
+    if idade < 12000 then
     begin
 	    print{'Você é uma criança'};
     end else
@@ -79,3 +79,4 @@ begin
     end;
 
 end .
+1@2
