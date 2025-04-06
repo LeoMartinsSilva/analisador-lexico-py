@@ -1,0 +1,19 @@
+program testePrintErrado;
+var nome: string;
+begin
+    nome := "Eduardo";
+
+    print{'Olá, ', nome};
+    print{'Nome: ', nome};
+    print{'Saída 1'};
+    print{'Mensagem'};
+
+    print'Faltou chave de abertura', nome};
+    print{'Faltou chave de fechamento', nome;
+    print{{'Chave extra'};
+    print{'Chave fechada duas vezes'}};
+    print{'Aberta e depois extra'}; };
+
+    print{'Tudo certo aqui'};
+    print{"Outro print certo"};
+end.

@@ -82,6 +82,29 @@ def analisarPalavra(palavra):
             token = enumToken.getByLexeme(lexema)
             tokens.append(token.code)
             lexemas.append({"lexema": token.lexeme, "linha": nrLinha})
+
+            if lexema == 'print':
+                j = i
+                abriu = 0
+                fechou = 0
+                while j < len(palavra) and palavra[j] != ';':
+                    if palavra[j] == '{':
+                        abriu += 1
+                    elif palavra[j] == '}':
+                        fechou += 1
+                    j += 1
+
+                if abriu == 0:
+                    erros.append({"linha": nrLinha, "lexema": "print", "erro": "Faltou chave de abertura"})
+                if fechou == 0:
+                    erros.append({"linha": nrLinha, "lexema": "print", "erro": "Faltou chave de fechamento"})
+                if abriu > 1:
+                    erros.append({"linha": nrLinha, "lexema": "print", "erro": "Chave de abertura extra"})
+                if fechou > 1:
+                    erros.append({"linha": nrLinha, "lexema": "print", "erro": "Chave de fechamento extra"})
+                if fechou > abriu:
+                    erros.append({"linha": nrLinha, "lexema": "print", "erro": "Chave fechando sem correspondente"})
+
             lexema = ""
         elif (len(palavra)>i+1 and (palavra[i+1] in delimitadores or palavra[i+1] in delimitadoresPular or palavra[i+1] =='.')) or len(palavra)==i+1:
             if(len(palavra)>i+1 and palavra[i+1] == '.' and lexema.isdigit() and len(palavra)>i+2 and palavra[i+2].isdigit()):
@@ -125,8 +148,6 @@ def analisarPalavra(palavra):
                     if not podeIdent and tokens[len(tokens)-2] == token[0]:
                         erros.append({"linha": nrLinha, "lexema": lexemas[len(tokens)-2]["lexema"] + " " + lexema, "erro": "Identificador não pode ter espaço entre letras"})
                     podeIdent = False
-                
-                
 
     if(esperaFechamentoLiteral):
         erros.append({"linha": lexemas[len(lexemas)-1]['linha'], "lexema": "'", "erro": "Literal não fechado"})
