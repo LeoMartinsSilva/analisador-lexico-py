@@ -1,0 +1,33 @@
+program meuprograma;
+
+var a , b , c : integer;
+begin
+    c := a/b;
+    b := c*a;
+    a += c-b;
+    if a > b then 
+    begin
+        print {"A é maior que b"} 
+    end;
+    if a >= b then 
+    begin
+        print {"A é maior ou igual a b"} 
+    end;
+    if a = b then 
+    begin
+        print {"A é igual a b"} 
+    end;
+    if a <= b then 
+    begin
+        print {"A é menor ou igual a b"} 
+    end;
+    if a < b then 
+    begin
+        print {"A é menor que b"} 
+    end; 
+    if a <> b then 
+    begin
+        print {"A é diferente de b"} 
+    end;
+
+end .

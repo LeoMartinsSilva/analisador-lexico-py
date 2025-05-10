@@ -1,7 +1,5 @@
 program meuprograma;
-const tamanhoArray=10;
-var a,b,c:integer;
-d,e,f:string;
+var idade:integer;
 valor:real;
 procedure somar(val1:integer,val2:integer);
 begin

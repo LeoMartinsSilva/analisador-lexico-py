@@ -1,0 +1,19 @@
+program meuprograma;
+
+var idade, idadeCarlos, soma : integer;
+
+procedure somár(va l1 : integer, val2 : integer);
+begin
+	soma := val1+val2;
+end;
+
+procedure mostrarSoma;
+begin
+	print{'A idade Somada é ', soma};
+end;
+
+begin
+    somar(idadeJoao, idadeCarlos);
+    mostrarSoma;
+
+end .
