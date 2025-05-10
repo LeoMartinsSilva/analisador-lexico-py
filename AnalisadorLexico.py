@@ -12,7 +12,7 @@ def is_float(s):
 def analisarArquivo(nomeArquivo):
     with open(nomeArquivo, 'r', encoding="UTF-8") as arquivo:
         conteudo = arquivo.read()
-        analisarPalavra(conteudo)
+        return analisarPalavra(conteudo)
 
 def temAcentosOuCaracteresEspeciais(s):
     return bool(re.search(r'[^a-zA-Z0-9\s]', s))
@@ -140,3 +140,5 @@ def analisarPalavra(palavra):
     for i in range(0,len(erros)):
         print("Erro: ", erros[i]["erro"], " Linha: ", erros[i]["linha"], " Lexema: ", erros[i]["lexema"])
         print("")
+        
+    return tokens

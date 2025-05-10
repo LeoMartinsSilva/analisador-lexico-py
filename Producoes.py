@@ -75,7 +75,7 @@ class Producoes(Enum):
         self.cpd = cpd
 
     @classmethod
-    def getByLexeme(cls, code):
+    def getByCode(cls, code):
         for producao in cls:
             if producao.code == code:
                 return producao
