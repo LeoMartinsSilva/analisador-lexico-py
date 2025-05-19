@@ -9,20 +9,21 @@ def analisarSintaxe(tokens):
     terminou = False
     while not terminou:
         if(i >= len(tokens)):
-            print("Erro de sintaxe: Esperado " + str(topo) + " e encontrado EOF")
+            print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado EOF")
             return False
         print("pilha: ", pilha)
-        print("topo: " + str(topo))
         if topo<=43 or topo > 100:
             print("Terminal encontrado: ", topo);
+            print("buscando: ", tokens[i]);
             if topo == tokens[i]:
                 topo = pilha.pop()
                 i+=1
             else:
-                print("Erro de sintaxe: Esperado " + str(topo) + " e encontrado " + str(tokens[i]))
+                print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado " + str(topo))
                 return False
         else: # não terminal
-            print("Não terminal encontrado: ", topo)
+            print("Não terminal encontrado: ", topo)          
+            print("buscando: ", tokens[i])
             if TabelaParsing[topo][tokens[i]] != 0:
                 conteudo = Producoes.getByCode(TabelaParsing[topo][tokens[i]]).cpd
                 
@@ -32,7 +33,7 @@ def analisarSintaxe(tokens):
                         pilha.append(cont)
                 topo = pilha.pop()
             else:
-                print("Erro de sintaxe: Esperado " + str(topo) + " e encontrado " + str(tokens[i]))
+                print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado " + str(topo))
                 return False
         if(topo == 43):
             if(tokens[i] == 43):

@@ -84,7 +84,7 @@ class Token(Enum):
     @classmethod
     def getByLexeme(cls, lexeme):
         for token in cls:
-            if token.code == 16 or token.code == 11 or token.code == 12 or token.code == 13 or token.code == 23:
+            if token.code == 16 or token.code == 11 or token.code == 12 or token.code == 13 or token.code == 23 or token.code == 101 or token.code == 102:
                 continue
             if token.lexeme == lexeme:
                 return token

@@ -83,6 +83,8 @@ class Producoes(Enum):
     
     @classmethod
     def escreverGramatica(cls):
+        j=1;
+        
         for producao in cls:
             text = "";
             if producao.cpd is not None:
@@ -93,5 +95,6 @@ class Producoes(Enum):
                         text += "ident "
             else:
                 text = "î"
-            print(producao.name + " -> " + text)
+            print(str(j) + ". " + producao.name + " -> " + text)
+            j+=1
             

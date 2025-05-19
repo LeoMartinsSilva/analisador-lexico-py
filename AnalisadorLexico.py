@@ -65,6 +65,7 @@ def analisarPalavra(palavra):
                 tokens.append(token[0])
                 lexemas.append({"lexema": token[1], "linha": nrLinha})
             esperaFechamentoString = not esperaFechamentoString
+            continue
         elif esperaFechamentoString:
             continue
         if(lexema == "'") and not esperaFechamentoString:
@@ -73,6 +74,7 @@ def analisarPalavra(palavra):
                 tokens.append(token[0])
                 lexemas.append({"lexema": token[1], "linha": nrLinha})
             esperaFechamentoLiteral = not esperaFechamentoLiteral
+            continue
         elif esperaFechamentoLiteral:
             continue
         if len(palavra)>i+1 and palavra[i] in delimitadorQuePodeTerIrmao and enumToken.getByLexeme(lexema + palavra[i+1]) is not None:
