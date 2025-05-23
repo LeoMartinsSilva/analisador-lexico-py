@@ -43,6 +43,6 @@ def analisarSintaxe(tokens):
                 print("Análise sintática concluída com sucesso!")
                 terminou = True
             else:
-                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Esperado " + str(tokens[i]['lexema']) + " e encontrado " + str(topo) )
+                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Esperado " + enumToken.getByCode(topo).lexeme + " e encontrado " + str(tokens[i]['lexema']) )
                 return False
     return True
