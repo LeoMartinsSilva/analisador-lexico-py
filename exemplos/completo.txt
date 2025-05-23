@@ -1,0 +1,54 @@
+program sistemaCompleto;
+
+const saudacao = 1;
+
+var 
+  nome : string;
+  idade, contador : integer;
+  media : real;
+  numero : real;
+
+procedure mostraDados(pNome : string, pIdade : integer);
+begin
+  print { "Nome: ", pNome , ", Idade: ", pIdade };
+end;
+
+begin
+  print { saudacao , ", digite seu nome e sua idade:" };
+  
+  read(nome);
+  read(idade);
+
+  if idade >= 18 then
+    begin
+      print { nome , ", você é maior de idade." };
+    end
+  else
+    begin
+      print { nome , ", você é menor de idade." };
+    end;
+
+  mostraDados(nome, idade);
+
+  print { "Contagem até sua idade:" };
+  for contador := 1 to idade do
+    begin
+      print { contador };
+    end;
+
+  media := 0;
+  contador := 0;
+
+  print { "Digite 3 números para calcular a média:" };
+
+  while contador < 3 do
+    begin
+      read(numero);
+      media := media + numero;
+      contador := contador + 1;
+    end;
+
+  media := media / 3;
+
+  print { "A média é: " , media };
+end.

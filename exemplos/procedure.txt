@@ -1,19 +1,14 @@
-program meuprograma;
+program exemploProcedimento;
 
-var idade, idadeCarlos, soma : integer;
+var a, b : integer;
 
-procedure somár(val1, val2 : integer);
+procedure soma(x, y : integer);
 begin
-	soma := val1+val2;
-end;
-
-procedure mostrarSoma;
-begin
-    print{"A idade Somada é ", soma};
+  print { "Soma: ", x + y };
 end;
 
 begin
-    somar(idadeJoao, idadeCarlos);
-    mostrarSoma;
-
-end .
+  read(a);
+  read(b);
+  soma(a, b);
+end.
