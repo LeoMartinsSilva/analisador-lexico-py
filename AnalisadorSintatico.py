@@ -3,43 +3,46 @@ from TabelaParsing import matriz as TabelaParsing
 from Producoes import Producoes
 
 def analisarSintaxe(tokens):
+    
     i = 0
     pilha = [43, 45]
-    topo = pilha.pop()
+    tokens.append({"token": 43, "linha": 0, "lexema": "$"})
     terminou = False
     while not terminou:
-        if(i >= len(tokens)):
-            print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado EOF")
-            return False
+        
+        print("")
         print("pilha: ", pilha)
-        if topo<=43 or topo > 100:
-            print("Terminal encontrado: ", topo);
-            print("buscando: ", tokens[i]);
-            if topo == tokens[i]:
-                topo = pilha.pop()
+        topo = pilha.pop()
+        
+        if(i >= len(tokens)):
+            print("Erro de sintaxe: Esperado EOF e encontrado ", enumToken.getByCode(topo).lexeme)
+            return False
+        if topo<43 or topo > 100:
+            print("Terminal encontrado: ", topo)
+            print("buscando: ", tokens[i])
+            if topo == tokens[i]['token']:
                 i+=1
             else:
-                print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado " + str(topo))
+                print("Erro de sintaxe na linha "+str(tokens[i]['linha'])+": Esperado " + enumToken.getByCode(topo).lexeme + " e encontrado " +tokens[i]['lexema'] )
                 return False
-        else: # não terminal
-            print("Não terminal encontrado: ", topo)          
+        elif(topo!=43): # não terminal
+            print("Não terminal encontrado: ", topo, " - ", enumToken.getByCode(topo).lexeme)          
             print("buscando: ", tokens[i])
-            if TabelaParsing[topo][tokens[i]] != 0:
-                conteudo = Producoes.getByCode(TabelaParsing[topo][tokens[i]]).cpd
+            if TabelaParsing[topo][tokens[i]['token']] != 0:
+                conteudo = Producoes.getByCode(TabelaParsing[topo][tokens[i]['token']]).cpd
                 
                 if conteudo != None:
                     conteudo = conteudo[::-1]
                     for cont in conteudo: 
                         pilha.append(cont)
-                topo = pilha.pop()
             else:
-                print("Erro de sintaxe: Esperado " + str(tokens[i]) + " e encontrado " + str(topo))
+                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Não é possivel chegar em " + str(tokens[i]['lexema']) + " através de " + enumToken.getByCode(topo).lexeme)
                 return False
-        if(topo == 43):
-            if(tokens[i] == 43):
+        else: # topo==43
+            if(tokens[i]["token"] == 43):
                 print("Análise sintática concluída com sucesso!")
                 terminou = True
             else:
-                print("Erro de sintaxe: Esperado " + str(topo) + " e encontrado " + str(tokens[i]))
+                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Esperado " + str(tokens[i]['lexema']) + " e encontrado " + str(topo) )
                 return False
     return True

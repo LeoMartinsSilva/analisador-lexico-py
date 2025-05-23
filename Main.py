@@ -4,6 +4,5 @@ from AnalisadorSintatico import analisarSintaxe
 
 #Producoes.escreverGramatica();
 
-tokens = analisarArquivo("exemplos/procedure.txt")
-print(tokens)
+tokens = analisarArquivo("exemplos/mainColadinho.txt") # {token, linha, lexema}
 analisarSintaxe(tokens)

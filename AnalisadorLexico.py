@@ -143,4 +143,9 @@ def analisarPalavra(palavra):
         print("Erro: ", erros[i]["erro"], " Linha: ", erros[i]["linha"], " Lexema: ", erros[i]["lexema"])
         print("")
         
-    return tokens
+    retorno = [];
+    
+    for i in range(0,len(tokens)):
+        retorno.append({"token": tokens[i], "linha": lexemas[i]["linha"], "lexema": lexemas[i]["lexema"]})
+        
+    return retorno;

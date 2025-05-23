@@ -9,7 +9,7 @@ end;
 
 procedure mostrarSoma;
 begin
-	print{"A idade Somada é ", soma};
+    print{"A idade Somada é ", soma};
 end;
 
 begin

@@ -13,7 +13,7 @@ begin
     valor:=10.2;
     c:=a/b;
     b:=c*a;
-    a+=c-b;
+    a:=c-b;
     print{'denis',10.12};
     print{"escreva sua idade"};
     read(idade);
@@ -28,42 +28,42 @@ begin
 	    end else
 	    begin
 		    print{'Você é um adulto'};
-	    end
+	    end;
     end;
     for i:=0 to 10 do
     begin
 	    print{i,' '};
-	    i=i+1;
+	    i:=i+1;
     end;
     while i<10 do
 	begin
 		print{i,' '};
-		i=i+1;
+		i:=i+1;
 	end;
     somar(idadeJoao,idadeCarlos);
     mostrarSoma;
     if a>b then 
     begin
-        print{"A é maior que b"} 
+        print{"A é maior que b"}; 
     end;
     if a>=b then 
     begin
-        print{"A é maior ou igual a b"} 
+        print{"A é maior ou igual a b"}; 
     end;
     if a=b then 
     begin
-        print{"A é igual a b"} 
+        print{"A é igual a b"};
     end;
     if a<=b then 
     begin
-        print{"A é menor ou igual a b"} 
+        print{"A é menor ou igual a b"}; 
     end;
     if a<b then 
     begin
-        print{"A é menor que b"} 
+        print{"A é menor que b"}; 
     end;
     if a<>b then 
     begin
-        print{"A é diferente de b"} 
+        print{"A é diferente de b"}; 
     end;
 end.
