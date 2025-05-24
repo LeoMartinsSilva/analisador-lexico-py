@@ -8,7 +8,7 @@ var
   media : real;
   numero : real;
 
-procedure mostraDados(pNome : string, pIdade : integer);
+procedure printDados(pNome : string, pIdade : integer);
 begin
   print { "Nome: ", pNome , ", Idade: ", pIdade };
 end;

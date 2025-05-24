@@ -17,8 +17,6 @@ def analisarArquivo(nomeArquivo):
 def temAcentosOuCaracteresEspeciais(s):
     return bool(re.search(r'[^a-zA-Z0-9\s]', s))
 
-def caracterDiferenteDePontoEmDecimal(s):
-    return bool(re.match(r'^\d+[^\w\s]\d+$', s))
 
 def analisarPalavra(palavra):
     lexema = '';
@@ -80,6 +78,9 @@ def analisarPalavra(palavra):
         if len(palavra)>i+1 and palavra[i] in delimitadorQuePodeTerIrmao and enumToken.getByLexeme(lexema + palavra[i+1]) is not None:
             esperaIrmao = True
             continue
+        
+        if enumToken.getByLexeme(lexema) is not None and (palavra[i+1].isdigit() or palavra[i+1].isalpha()) and lexema not in delimitadores:
+            continue
         if enumToken.getByLexeme(lexema) is not None:
             token = enumToken.getByLexeme(lexema)
             tokens.append(token.code)
@@ -106,30 +107,21 @@ def analisarPalavra(palavra):
                     erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Parte decimal do numero maior que 2 digitos"})
                 lexema = ""
             else:
-                isNumero = caracterDiferenteDePontoEmDecimal(lexema);
-                if isNumero:
-                    token = enumToken.getNReal()
-                    tokens.append(token[0])
-                    lexemas.append({"lexema": token[1], "linha": nrLinha})
-                    erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Número inválido"})
-                else:
-                    token = enumToken.getIdent()
-                    tokens.append(token[0])
-                    lexemas.append({"lexema": lexema, "linha": nrLinha})
+                token = enumToken.getIdent()
+                tokens.append(token[0])
+                lexemas.append({"lexema": lexema, "linha": nrLinha})
                 
-                    if len(lexema)>64:
-                        erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador maior que 64 caracteres"})
-                    if lexema[0].isdigit():
-                        erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador começa com número"})
-                    if temAcentosOuCaracteresEspeciais(lexema):
-                        erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador contém acentos ou caracteres especiais"})
+                if len(lexema)>64:
+                    erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador maior que 64 caracteres"})
+                if lexema[0].isdigit():
+                    erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador começa com número"})
+                if temAcentosOuCaracteresEspeciais(lexema):
+                    erros.append({"linha": nrLinha, "lexema": lexema, "erro": "Identificador contém acentos ou caracteres especiais"})
 
-                    if not podeIdent and tokens[len(tokens)-2] == token[0]:
-                        erros.append({"linha": nrLinha, "lexema": lexemas[len(tokens)-2]["lexema"] + " " + lexema, "erro": "Identificador não pode ter espaço entre letras"})
-                    podeIdent = False
+                if not podeIdent and tokens[len(tokens)-2] == token[0]:
+                    erros.append({"linha": nrLinha, "lexema": lexemas[len(tokens)-2]["lexema"] + " " + lexema, "erro": "Identificador não pode ter espaço entre letras"})
+                podeIdent = False
                 
-                
-
     if(esperaFechamentoLiteral):
         erros.append({"linha": lexemas[len(lexemas)-1]['linha'], "lexema": "'", "erro": "Literal não fechado"})
     if(esperaFechamentoString):
