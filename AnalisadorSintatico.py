@@ -1,6 +1,17 @@
 from tokens import Token as enumToken
 from TabelaParsing import matriz as TabelaParsing
 from Producoes import Producoes
+from FirstFollow import matriz as FirstFollow
+
+def getFirstFollow(tokens):
+    str=''
+    for i in range(len(tokens)):
+        str += enumToken.getByCode(tokens[i]).lexeme
+        if i == len(tokens)-2:
+            str += " ou "
+        elif i != len(tokens)-1:
+            str += ", "
+    return str
 
 def analisarSintaxe(tokens):
     
@@ -36,7 +47,7 @@ def analisarSintaxe(tokens):
                     for cont in conteudo: 
                         pilha.append(cont)
             else:
-                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Não é possivel chegar em " + str(tokens[i]['lexema']) + " através de " + enumToken.getByCode(topo).lexeme)
+                print("Erro de sintaxe na linha " + str(tokens[i]['linha']) + ": Encontrado " + str(tokens[i]['lexema']) + " esperando " + getFirstFollow(FirstFollow[topo]))
                 return False
         else: # topo==43
             if(tokens[i]["token"] == 43):

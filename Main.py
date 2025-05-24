@@ -5,4 +5,4 @@ from AnalisadorSintatico import analisarSintaxe
 #Producoes.escreverGramatica();
 
 tokens = analisarArquivo("exemplos/completo.txt") # {token, linha, lexema}
-#analisarSintaxe(tokens)
+analisarSintaxe(tokens)

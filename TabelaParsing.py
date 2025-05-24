@@ -56,7 +56,6 @@ matriz[62][13] = 31
 matriz[62][16] = 31
 matriz[62][23] = 31
 matriz[62][39] = 31
-matriz[63][42] = 29
 matriz[63][3] = 30
 matriz[63][4] = 30
 matriz[63][20] = 30

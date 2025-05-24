@@ -2,11 +2,6 @@ program sistemaCompleto;
 
 const saudacao = 1;
 
-var 
-  nome : string;
-  idade, contador : integer;
-  media : real;
-  numero : real;
 
 procedure printDados(pNome : string, pIdade : integer);
 begin
