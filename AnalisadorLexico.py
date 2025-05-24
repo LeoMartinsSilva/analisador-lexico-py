@@ -33,14 +33,31 @@ def analisarPalavra(palavra):
     esperaIrmao = False
     esperaFechamentoString = False
     esperaFechamentoLiteral = False
+    comentandoLinha = False
+    comentandoBloco = False
     podeIdent = True
 
     for i in range(0,len(palavra)):
         if(palavra[i] == '\n'):
             nrLinha += 1
             podeIdent = True
+            comentandoLinha = False
+        if comentandoLinha:
+            continue;
+        if comentandoBloco:
+            if palavra[i] == '/' and len(palavra)>i and palavra[i-1] == '@':
+                comentandoBloco = False
+                continue
+            else:
+                continue
         if (esperaFechamentoLiteral or esperaFechamentoString) and palavra[i] not in ["'", '"']:
             lexema = lexema + palavra[i]
+        if palavra[i] == "@":
+            comentandoLinha = True
+            continue
+        if palavra[i] == "/" and len(palavra)>i and palavra[i+1] == "@":
+            comentandoBloco = True
+            continue
         elif palavra[i] in delimitadores and esperaIrmao:
             lexema = lexema + palavra[i]
             esperaIrmao = False

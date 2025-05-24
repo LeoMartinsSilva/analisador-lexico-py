@@ -30,12 +30,12 @@ begin
 
   mostraDados(nome, idade);
 
-  print { "Contagem até sua idade:" };
-  for contador := 1 to idade do
+  print { "Contagem até sua idade:" }; @comentario
+  /@for contador := 1 to idade do
     begin
       print { contador };
     end;
-
+@/
   media := 0;
   contador := 0;
 
