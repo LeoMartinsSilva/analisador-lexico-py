@@ -1,4 +1,3 @@
-import numpy as np
 from tokens import Token as enumToken
 import re
 

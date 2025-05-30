@@ -1,0 +1,6 @@
+Não alterar const
+chamar ident não declarado
+não realizar comparações entre tipos diferentes
+não realizar operações matematicas de tipos diferentes (nem vstring e literal)
+não permitir atribuicao de tipo diferentes em variaveis
+não permitir variavel duplicada

@@ -10,7 +10,7 @@ def getFirstFollow(tokens):
         if i == len(tokens)-2:
             str += " ou "
         elif i != len(tokens)-1:
-            str += ", "
+            str += " "
     return str
 
 def analisarSintaxe(tokens):

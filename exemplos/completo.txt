@@ -1,7 +1,7 @@
 program sistemaCompleto;
 
 const saudacao = 1;
-
+var a : integer;
 
 procedure printDados(pNome : string, pIdade : integer);
 begin
@@ -43,7 +43,7 @@ begin
       contador := contador + 1;
     end;
 
-  media := media / 3;
+  media := (media / 3);
 
   print { "A média é: " , media };
 end.
