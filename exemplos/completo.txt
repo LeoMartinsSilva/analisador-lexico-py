@@ -1,7 +1,9 @@
 program sistemaCompleto;
 
 const saudacao = 1;
-var a : integer;
+var a, b : integer;
+c, d : string;
+a : real;
 
 procedure printDados(pNome : string, pIdade : integer);
 begin
@@ -10,7 +12,8 @@ end;
 
 begin
   print { saudacao , ", digite seu nome e sua idade:" };
-  
+  a := 3 + "a";
+  pNome := a;
   read(nome);
   read(idade);
 

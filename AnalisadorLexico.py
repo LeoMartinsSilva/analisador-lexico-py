@@ -59,7 +59,6 @@ def analisarPalavra(palavra):
             continue
         elif palavra[i] in delimitadores and esperaIrmao:
             lexema = lexema + palavra[i]
-            esperaIrmao = False
         elif palavra[i] in delimitadores:
             lexema = palavra[i]
         elif palavra[i] == '.':
@@ -95,9 +94,10 @@ def analisarPalavra(palavra):
             esperaIrmao = True
             continue
         
-        if enumToken.getByLexeme(lexema) is not None and (palavra[i+1].isdigit() or palavra[i+1].isalpha()) and lexema not in delimitadores:
+        if enumToken.getByLexeme(lexema) is not None and (palavra[i+1].isdigit() or palavra[i+1].isalpha()) and lexema not in delimitadores and not esperaIrmao:
             continue
         if enumToken.getByLexeme(lexema) is not None:
+            esperaIrmao = False
             token = enumToken.getByLexeme(lexema)
             tokens.append(token.code)
             lexemas.append({"lexema": token.lexeme, "linha": nrLinha})
