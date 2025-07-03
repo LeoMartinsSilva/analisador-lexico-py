@@ -74,6 +74,16 @@ def validarAtribuicao(tokens, index):
     for i in range(index+2, len(tokens)):
         if tokens[i]['token'] == 31:
             break
+        if tokens[i]['token'] == 3:
+            break
+        if tokens[i]['token'] == 11:
+            tiposAtribuidos.append("real")
+        if tokens[i]['token'] == 12:
+            tiposAtribuidos.append("integer")
+        if tokens[i]['token'] == 13:
+            tiposAtribuidos.append("literal")
+        if tokens[i]['token'] == 23:
+            tiposAtribuidos.append("string")
         if tokens[i]['token'] == 16:
             tipoAtribuicao = None
             for item in tabela:
@@ -114,7 +124,6 @@ def validarOperacaoMatematica(tokens, index):
                         erro = {"erro": f"Não é possível realizar operações com um programa", "linha": tokens[index]['linha']}
                         erros.append(erro)
                     break
-            print(f"Tipo de operação encontrado: {tipoOperacao} no lexema {tokens[i]['lexema']}")
             if tipoOperacao:
                 tiposOperacao.append(tipoOperacao)
     

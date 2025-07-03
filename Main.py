@@ -5,6 +5,7 @@ from AnalisadorSemantico import analisarSemantica
 
 #Producoes.escreverGramatica();
 
-tokens = analisarArquivo("exemplos/completo.txt") # {token, linha, lexema}
+tokens = analisarArquivo("exemplos/forEWhile.txt") # {token, linha, lexema}
+
 if(analisarSintaxe(tokens)):
     analisarSemantica(tokens)

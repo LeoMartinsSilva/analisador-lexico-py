@@ -1,5 +1,5 @@
-Não permitir variavel duplicada (OK)
+Não permitir identificador duplicado (OK)
 Não permitir chamar ident não declarado (OK)
-Não realizar operações matematicas de tipos diferentes (ok)
-Não permitir atribuicao de tipo diferentes em variaveis (OK)
+Não realizar operações matemáticas de tipos diferentes (ok)
+Não permitir atribuição de tipo diferentes em variáveis (OK)
 Não atribuir valores em const, procedure e program (OK)

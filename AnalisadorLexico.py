@@ -94,7 +94,7 @@ def analisarPalavra(palavra):
             esperaIrmao = True
             continue
         
-        if enumToken.getByLexeme(lexema) is not None and (palavra[i+1].isdigit() or palavra[i+1].isalpha()) and lexema not in delimitadores and not esperaIrmao:
+        if enumToken.getByLexeme(lexema) is not None and (len(palavra)>i+1 and (palavra[i+1].isdigit() or palavra[i+1].isalpha())) and lexema not in delimitadores and not esperaIrmao:
             continue
         if enumToken.getByLexeme(lexema) is not None:
             esperaIrmao = False
